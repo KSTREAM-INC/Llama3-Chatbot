@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EnzaGroup Bot</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            <span>EnzaGroup</span>
+            <button id="theme-toggle">Toggle Dark Mode</button>
+        </div>
+        <div class="chat-box" id="chat-box">
+            <div class="chat-message user-message">
+                <span>🙋‍♂️ Hi</span>
+            </div>
+            <div class="chat-message bot-message">
+                <span>🤖 Hello! How can I assist you today?</span>
+            </div>
+            <div id="spinner" style="display: none; text-align: center;">
+                <i class="fas fa-spinner fa-spin" style="font-size: 20px;"></i>
+            </div>            
+        </div>
+    </div>
+    <div class="chat-input-container" id="chat-input-container">
+        <label for="upload-file" class="upload-button"> <i class="fas fa-paperclip"></i></label>
+        <input type="file" id="upload-file" hidden>
+        <textarea type="text" id="chat-input" placeholder="Type your message..." rows="1"></textarea>
+        <button class="send-button" id="send-button"><i class="fas fa-paper-plane"></i></button>
+        <!-- <button onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button> -->
+        <button onclick="restartChat()"><i class="far fa-trash-alt"></i></button>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

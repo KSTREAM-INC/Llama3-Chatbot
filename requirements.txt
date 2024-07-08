@@ -1,0 +1,12 @@
+cache
+cachetools
+python-dotenv
+streamlit
+chromadb
+faiss-cpu
+fastembed
+langchain
+langchain_community
+langchain_core
+langchain_openai
+unstructured[all-docs]

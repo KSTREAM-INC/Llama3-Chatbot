@@ -1,0 +1,105 @@
+  - rule: activate payment facilitator form
+    condition:
+    - slot_was_set:
+      - partnership_type: payment_facilitator
+    steps:
+      - action: payment_facilitator_form
+      - active_loop: payment_facilitator_form
+      
+  - rule: submit payment facilitator form
+    condition:
+    - active_loop: payment_facilitator_form
+    steps:
+      - action: payment_facilitator_form
+      - active_loop: null
+
+  - rule: activate iso-m form
+    condition:
+    - slot_was_set:
+      - partnership_type: iso-m
+    steps:
+      - action: iso_m_form
+      - active_loop: iso_m_form
+      
+  - rule: submit iso-m form
+    condition:
+    - active_loop: iso_m_form
+    steps:
+      - action: iso_m_form
+      - active_loop: null
+      
+  - rule: activate direct merchant form
+    condition:
+    - slot_was_set:
+      - partnership_type: direct_merchant
+    steps:
+      - action: direct_merchant_form
+      - active_loop: direct_merchant_form
+      
+  - rule: submit direct merchant form
+    condition:
+    - active_loop: direct_merchant_form
+    steps:
+      - action: direct_merchant_form
+      - active_loop: null
+
+
+NEW STORY: 
+
+
+  - story: partnership_form_affirm_iso_m
+    steps:
+      - intent: partnership
+      - slot_was_set:
+        - partnership_type: "iso-m"
+      - action: utter_partnership_documents
+      - intent: confirm_upload_affirm
+      - action: iso_m_form
+      - active_loop: iso_m_form
+
+  - story: partnership_form_affirm_direct_merchant
+    steps:
+      - intent: partnership
+      - slot_was_set:
+        - partnership_type: "direct_merchant"
+      - action: utter_partnership_documents
+      
+      
+NEW RULE:
+
+  - rule: activate iso-m form
+    condition:
+    - slot_was_set:
+      - partnership_type: "iso-m"
+    steps:
+      - action: iso_m_form
+      - active_loop: iso_m_form
+      
+  - rule: submit iso-m form
+    condition:
+    - active_loop: iso_m_form
+    steps:
+      - action: iso_m_form
+      - active_loop: null
+      
+  - rule: activate direct merchant form
+    condition:
+    - slot_was_set:
+      - partnership_type: "direct_merchant"
+    steps:
+      - action: direct_merchant_form
+      - active_loop: direct_merchant_form
+      
+  - rule: submit direct merchant form
+    condition:
+    - active_loop: direct_merchant_form
+    steps:
+      - action: direct_merchant_form
+      - active_loop: null
+      - intent: confirm_upload_affirm
+      - action: direct_merchant_form
+      - active_loop: direct_merchant_form
+      
+
+      
+
