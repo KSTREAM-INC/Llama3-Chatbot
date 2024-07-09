@@ -11,3 +11,4 @@ langchain_core
 langchain_openai
 unstructured[all-docs]
 flask
+psutil
