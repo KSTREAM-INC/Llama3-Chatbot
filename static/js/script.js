@@ -7,7 +7,7 @@ document.getElementById('theme-toggle').addEventListener('click', () => {
   const sendButton = document.getElementById("send-button");
   
   const inactiveMessage = "Server is down, Please contact the developer to activate it";
-  var host = "http://127.0.0.1:5005/chat";
+  var host = "http://127.0.0.1:5000/chat";
 //   let passwordInput = false;
 
 // Adjusting the textarea height dynamically

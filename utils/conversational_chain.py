@@ -113,24 +113,24 @@ class PromptManager:
 
         These prompts are used for generating search queries and answering user queries.
         """
-        system_prompt = (
-            """Use the provided context to answer the provided user query. 
-            Only use the provided context to answer the query.
-            Context: {context}
-
-            If there is no provided context to answer the query, respond with "I don't know."
-            If the provided context is insufficient to answer the query, also respond with "I don't know."
-            """
-        )
         # system_prompt = (
-        #     """Use the provided context to answer the user query. Only use the provided context to answer the query if it is sufficient.
+        #     """Use the provided context to answer the provided user query. 
+        #     Only use the provided context to answer the query.
         #     Context: {context}
 
-        #     If the provided context is insufficient to answer the query, use your own internal knowledge base to generate a helpful response.
-
-        #     Do not respond with "I don't know." Instead, provide the best possible answer using either the provided context or your own knowledge.
+        #     If there is no provided context to answer the query, respond with "I don't know."
+        #     If the provided context is insufficient to answer the query, also respond with "I don't know."
         #     """
         # )
+        system_prompt = (
+            """Use the provided context to answer the user query. Only use the provided context to answer the query if it is sufficient.
+            Context: {context}
+
+            If the provided context is insufficient to answer the query, use your own internal knowledge base to generate a helpful response.
+
+            Do not respond with "I don't know." Instead, provide the best possible answer using either the provided context or your own knowledge.
+            """
+        )
         context_q_system_prompt = (
             """
             Given the below conversation, generate a search query to look up to get information relevant to the conversation"

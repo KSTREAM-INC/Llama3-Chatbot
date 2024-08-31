@@ -1,7 +1,5 @@
-from langchain_community.llms import Ollama
-from langchain_openai import ChatOpenAI
-from langchain_openai import OpenAIEmbeddings
-from langchain_community.embeddings import FastEmbedEmbeddings
+from langchain_groq import ChatGroq
+from langchain_community.embeddings.fastembed import FastEmbedEmbeddings
 from langchain_core.messages import HumanMessage, AIMessage
 from utils.conversational_chain import LLMHandler
 from utils.summary_chain import SummaryDocument
@@ -15,20 +13,17 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 from flask import Flask, render_template, request, Response
+from flask_cors import CORS
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
+CORS(app)
 
 # Initialize the LLM
-if "qwen" not in cfg.model_name:
-    print("Using OPENAI GPT4")
-    openai_key = os.getenv('OPENAI_API_KEY')
-    llm = ChatOpenAI(model_name=cfg.model_name, temperature=cfg.temperature, api_key=openai_key)
-    embeddings = OpenAIEmbeddings(model=cfg.embeddings_model, api_key=openai_key)
-else:
-    print(cfg.model_name)
-    llm = Ollama(model=cfg.model_name)
-    embeddings = FastEmbedEmbeddings()
+groq_api_key = os.getenv('GROQ_API_KEY')
+llm = ChatGroq(groq_api_key=groq_api_key, model_name=cfg.model_name, temperature=cfg.temperature)
+embeddings = FastEmbedEmbeddings()
+
 
 FILE_TYPES = ['txt', 'pdf', 'docx', 'doc', 'csv']
 
@@ -90,5 +85,5 @@ def restartchat():
 
 
 if __name__ == '__main__':
-    app.run(port=5005)
+    app.run(port=5000)
 
